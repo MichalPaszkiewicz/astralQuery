@@ -5,7 +5,7 @@ function astroError(message){
 	this.message = message;
 }
 
-var astro$$ = function(){
+var astro$$$ = function(){
 	this.FUNCTIONS = {
 		TO_RADIANS: function(deg){ return deg * Math.PI / 180; },
 		TO_DEGREES: function(rad){return rad * 180 / Math.PI; }
@@ -22,6 +22,8 @@ var astro$$ = function(){
 	
 	return this;
 }
+
+var astro$$ = new astro$$$();
 
 var astro$ = function(){
 
