@@ -8,11 +8,12 @@ var astro$ = function(){
 		AU: {value: 149597871, units: "km"}
 	};
 	
+	/*todo: discuss moving this to body*/
 	this.EARTH = {
 		ecl: function(d){ return 23.4393 - 3.563E-7 * d; }	
 	};
 /*******************************************************************************
- * 	ecl	obliquity of the ecliptic
+ * 	ecl	obliquity of the ecliptic (tilt of earth's axis of rotation)
  *******************************************************************************/
 	
 	
@@ -56,7 +57,7 @@ var astro$ = function(){
 	N	longitude of the ascending node
 	i	inclination to the ecliptic
 	w	argument of perihelion
-	a	semi-major axis, mean distance from Sun
+	a	semi-major axis, mean distance from Sun (but often given in Earth radii for the Moon)
 	e	eccentricity (0=circle, 0-1=ellipse, 1=parabola)
 	M	mean anomaly (0 at perihelion; increases uniformly with time)
 	w1	longitude of perihelion
