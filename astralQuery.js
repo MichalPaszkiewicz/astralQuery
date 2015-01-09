@@ -50,7 +50,7 @@ var astro$ = function(){
 		newBody._get = function(name, d){ return this["_" + name][0] + this["_" + name][1] * d; }
 		newBody.w1 = function(d){ return this._get("N", d) + this._get("w", d); };
 		newBody.L = function(d){ return this._get("M", d) + this.w1(d); };
-		newBody.q = function(d){ return this._get("a", d) * (1 - this._get("e", d)); };
+		newBody.q = function(d){ return this._get("a", d) * (1 - this._get("e", d)); };/*remember a is earth radii for moon*/
 		newBody.Q = function(d){ return this._get("a", d) * (1 + this._get("e", d)); };
 		newBody.P = function(d){ return Math.pow(this._get("a", d), 1.5); };
 		/*newBody.T = Epoch_of_M - (M(deg)/360_deg) / P  = time of perihelion*/
@@ -94,9 +94,10 @@ var astro$ = function(){
 	}
 
 	this.items = {
-		"Moon": {types: ["natural", "satellite", "moon"]},
-		"ISS": {types: ["artificial", "satellite"]},
-		"Sun": {types: ["sun", "star"]},
+		"Sun": {types: ["sun", "star"], body: this.body([0,0],[0,0],[282.9404,4.70935E-5],[1,0],[0.016709,-1.151E-9],[356.0470,0.9856002585])},
+		"Moon": {types: ["natural", "satellite", "moon"], body: this.body([125.1228,-0.0529538083],[5.1454,0],[318.0634,0.1643573223],[60.2666,0],[0.054900,0],[115.3654,13.0649929509])},
+		"Mercury": {types: ["planet"], body: this.body([48.3313,3.24587E-5],[7.0047,5.00E-8],[29.1241,1.01444E-5],[0.387098,0],[0.205635,5.59E-10],[168.6562,4.0923344368])},
+		"Venus": {types: ["planet"], body: this.body([76.6799,2.46590E-5],[3.3946,2.75E-8],[54.8910,1.38374E-5],[0.723330,0],[0.006773,1.302E-9],[48.0052,1.6021302244]);
 	};
 
 	/*gets or sets values*/
