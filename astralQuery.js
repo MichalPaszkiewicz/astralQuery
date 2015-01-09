@@ -5,24 +5,29 @@ function astroError(message){
 	this.message = message;
 }
 
-var astro$ = function(){
-	this.CONSTANTS = {
-		AU: {value: 149597871, units: "km"}
-	};
-	
+var astro$$ = function(){
 	this.FUNCTIONS = {
 		TO_RADIANS: function(deg){ return deg * Math.PI / 180; },
 		TO_DEGREES: function(rad){return rad * 180 / Math.PI; }
+	};
+	
+	this.CONSTANTS = {
+		AU: {value: 149597871, units: "km"}
 	};
 	
 	/*todo: discuss moving this to body*/
 	this.EARTH = {
 		ecl: function(d){ return 23.4393 - 3.563E-7 * d; }	
 	};
+	
+	return this;
+}
+
+var astro$ = function(){
+
 /*******************************************************************************
  * 	ecl	obliquity of the ecliptic (tilt of earth's axis of rotation)
  *******************************************************************************/
-	
 	
 	//Day 0.0 ar 2000 Jan 0.0. Note hours must be in 24 hour system
 	this.toAstralDate = function(y, m, D, h, min, s){
@@ -52,7 +57,7 @@ var astro$ = function(){
 	this.body = function(N, i, w, a, e, M){
 		var newBody = function(){};
 		newBody.orbit = {_N: N, _i: i, _w: w, _a: a, _e: e, _M: M};
-		newBody._get = function(name, d){ return this["_" + name][0] + this["_" + name][1] * d; };
+		newBody._get = function(name, d){ return this.orbit["_" + name][0] + this.orbit["_" + name][1] * d; };
 		newBody.w1 = function(d){ return this._get("N", d) + this._get("w", d); };
 		newBody.L = function(d){ return this._get("M", d) + this.w1(d); };
 		newBody.q = function(d){ return this._get("a", d) * (1 - this._get("e", d)); };/*remember a is earth radii for moon*/
@@ -61,8 +66,8 @@ var astro$ = function(){
 		newBody.E = function(d){ 
 			var tempM = this._get("M", d); 
 			var tempe = this._get("e", d);
-			var eDeg = astro$.FUNCTIONS.TO_DEGREES(tempe);
-			var MRad = astro$.FUNCTIONS.TO_RADIANS(tempM);
+			var eDeg = astro$$.FUNCTIONS.TO_DEGREES(tempe);
+			var MRad = astro$$.FUNCTIONS.TO_RADIANS(tempM);
 			var E0 = tempM + eDeg * Math.sin(MRad) * (1.0 + tempe * Math.cos(MRad));
 			var E1 = -1;
 			if(E0 < 0.06){ return E0; }
