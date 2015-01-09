@@ -34,7 +34,7 @@ var astro$ = function(){
 	//gets the astral date from js date, if none provided, returns current date to astral date.
 	this.getAstralDate = function(date){
 		var setDate = date;
-		if(setDate == null || setDate == undefined){
+		if(setDate == null || setDate === undefined){
 			setDate = new Date();
 		}
 	
@@ -79,8 +79,8 @@ var astro$ = function(){
 		newBody.xv = function(d){ return this._get("a", d) * Math.cos(this.E(d)) - this._get("e", d); };
 		newBody.xy = function(d){ return this._get("a", d) * Math.sqrt(1.0 - Math.pow(this._get("e", d),2)) * Math.sin(this.E(d)); };
 		newBody.v = function(d){ return Math.atan2( this.yv(d), this.xv(d) ); };
-		newBody.r = function(d){ return Math.sqrt( Math.pow( this.xv(d), 2 ) + Math.pow( this.yv(d), 2 ) ) };
-		newBody.lonsun = function(d){ return this.v(d) + this._get("w", d); }
+		newBody.r = function(d){ return Math.sqrt( Math.pow( this.xv(d), 2 ) + Math.pow( this.yv(d), 2 ) ); };
+		newBody.lonsun = function(d){ return this.v(d) + this._get("w", d); };
 		/*newBody.T = Epoch_of_M - (M(deg)/360_deg) / P  = time of perihelion*/
 		return newBody;
 	};
@@ -134,10 +134,10 @@ var astro$ = function(){
 		else if(typeof(arg2) == "string"){ }
 		else if(typeof(arg2) == "object"){ }
 		else{ throw new astroError("Second argument invalid"); }
-	}
+	};
 
 	/*for getting particular value of heavenly body*/
-	this.getValue = function(body, value){ return "value in body"; }	
+	this.getValue = function(body, value){ return "value in body"; };	
 
 	return this;
 };
@@ -159,6 +159,6 @@ function a$(){
 		case 2: return astro$.getOrSet(args[0], args[1]);
 		default: return "lol";		
 	}
-};
+}
 
 var astroQ = a$;
