@@ -4,6 +4,30 @@ function astroError(message){
 }
 
 var astro$ = function(){
+	//Day 0.0 ar 2000 Jan 0.0. Note hours must be in 24 hour system
+	this.toAstralDate(y, m, D, h, min, s){
+		var d = 367*y - 7 * Math.floor(( y + Math.floor((m+9)/12) ) / 4) + 275* Math.floor(m/9) + D - 730530;
+		var t = (h / 24.0) + (min / (60 * 24)) + (s / (60 * 60 * 24));
+		return d + t;
+	}
+
+	//gets the astral date from js date, if none provided, returns current date to astral date.
+	this.getAstralDate = function(date){
+		var setDate = date;
+		if(setDate == null || setDate == undefined){
+			setDate = new Date();
+		}
+	
+		var year = setDate.getFullYear();
+		var month = setDate.getMonth() + 1;
+		var day = setDate.getDate();
+		var hour = setDate.getHours();
+		var minute = setDate.getMinutes();
+		var second = setDate.getSeconds();
+	
+		return this.toAstralDate(year, month, day, hour, minute, second);
+	}
+	
 	/*returns a body*/
 	this.body = function(){
 		this.weight;
