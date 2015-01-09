@@ -119,7 +119,7 @@ var astro$ = function(){
 	return this;
 };
 
-var astroQ = function a$(){
+function a$(){
 	var defaults = {};
 
 	var args = arguments;
@@ -137,3 +137,5 @@ var astroQ = function a$(){
 		default: return "lol";		
 	}
 };
+
+var astroQ = a$;
