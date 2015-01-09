@@ -46,12 +46,13 @@ var astro$ = function(){
 	/*returns heavenly body*/
 	this.body = function(N, i, w, a, e, M){
 		var newBody = function(){};
-		newBody.orbit = {N: N, i: i, w: w, a: a, e: e, M: M};
-		newBody.w1 = function(){ return this.N + this.w; };
-		newBody.L = function(){ return this.M + this.w1(); };
-		newBody.q = function(){ return this.a * (1 - this.e); };
-		newBody.Q = function(){ return this.a * (1 + this.e); };
-		newBody.P = function(){ return Math.pow(this.a, 1.5); };
+		newBody.orbit = {_N: N, _i: i, _w: w, _a: a, _e: e, _M: M};
+		newBody._get = function(name, d){ return this["_" + name][0] + this["_" + name][1] * d; }
+		newBody.w1 = function(d){ return this._get("N", d) + this._get("w", d); };
+		newBody.L = function(d){ return this._get("M", d) + this.w1(d); };
+		newBody.q = function(d){ return this._get("a", d) * (1 - this._get("e", d)); };
+		newBody.Q = function(d){ return this._get("a", d) * (1 + this._get("e", d)); };
+		newBody.P = function(d){ return Math.pow(this._get("a", d), 1.5); };
 		/*newBody.T = Epoch_of_M - (M(deg)/360_deg) / P  = time of perihelion*/
 		return newBody;
 	}
