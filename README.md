@@ -19,10 +19,10 @@ a$("Moon").visible({lat,lon, time});
 returns: true
 
 a$("moon")						
-returns: array[obj] (array of all moons)
+returns: array (array of all moons)
 
 a$("moon, star")					
-returns: array[obj] (array of all stars and moons)
+returns: array (array of all stars and moons)
 
 a$("Earth").add(obj)					
 returns: adds object to Earth - could be satellite
@@ -34,8 +34,8 @@ a$("Moon").weight();
 returns: "34kg"
 
 a$("Sun").satellites()                                  
-returns: array[obj] (array of planet objects)
+returns: array (array of planet objects)
 
 a$("Sun").satellites().satellites()                    
-returns: array[obj] (array of all satellites of all planets)
+returns: array (array of all satellites of all planets)
 
