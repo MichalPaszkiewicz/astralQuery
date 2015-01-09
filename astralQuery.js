@@ -78,6 +78,7 @@ var astro$ = function(){
 	E	eccentric anomaly
 ****************************************************************************************/
 	
+	/*List of all types of heavenly objects*/
 	this.types = [
 		"natural",
 		"artificial",
@@ -93,11 +94,8 @@ var astro$ = function(){
 		"neutron",
 		"blackhole"
 	];
-	
-	this.addType = function(){
-	
-	}
 
+	/*List of predefined items stored in the library*/
 	this.items = {
 		"Sun": {types: ["sun", "star"], body: this.body([0,0],[0,0],[282.9404,4.70935E-5],[1,0],[0.016709,-1.151E-9],[356.0470,0.9856002585])},
 		"Moon": {types: ["natural", "satellite", "moon"], body: this.body([125.1228,-0.0529538083],[5.1454,0],[318.0634,0.1643573223],[60.2666,0],[0.054900,0],[115.3654,13.0649929509])},
