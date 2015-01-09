@@ -29,7 +29,7 @@ var astro$ = function(){
 		var d = 367*y - 7 * Math.floor(( y + Math.floor((m+9)/12) ) / 4) + 275* Math.floor(m/9) + D - 730530;
 		var t = (h / 24.0) + (min / (60 * 24)) + (s / (60 * 60 * 24));
 		return d + t;
-	}
+	};
 
 	//gets the astral date from js date, if none provided, returns current date to astral date.
 	this.getAstralDate = function(date){
@@ -46,7 +46,7 @@ var astro$ = function(){
 		var second = setDate.getSeconds();
 	
 		return this.toAstralDate(year, month, day, hour, minute, second);
-	}
+	};
 	
 	/*returns heavenly body*/
 	this.body = function(N, i, w, a, e, M){
@@ -83,7 +83,7 @@ var astro$ = function(){
 		newBody.lonsun = function(d){ return this.v(d) + this._get("w", d); }
 		/*newBody.T = Epoch_of_M - (M(deg)/360_deg) / P  = time of perihelion*/
 		return newBody;
-	}
+	};
 /****************************************************************************************
 	N	longitude of the ascending node
 	i	inclination to the ecliptic
