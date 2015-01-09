@@ -7,7 +7,8 @@ Names of type in lower case.
 
 Names of objects capitalised.
 
-#Examples
+Examples
+---------------------------------------------
 a$("Moon")                                              
 returns: object (all info on moon)
 
