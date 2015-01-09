@@ -85,7 +85,7 @@ var astro$ = function(){
 			}
 		};
 		newBody.xv = function(d){ return this._get("a", d) * Math.cos(this.E(d)) - this._get("e", d); };
-		newBody.xy = function(d){ return this._get("a", d) * Math.sqrt(1.0 - Math.pow(this._get("e", d),2)) * Math.sin(this.E(d)); };
+		newBody.yv = function(d){ return this._get("a", d) * Math.sqrt(1.0 - Math.pow(this._get("e", d),2)) * Math.sin(this.E(d)); };
 		newBody.v = function(d){ return Math.atan2( this.yv(d), this.xv(d) ); };
 		newBody.r = function(d){ return Math.sqrt( Math.pow( this.xv(d), 2 ) + Math.pow( this.yv(d), 2 ) ); };
 		newBody.lonsun = function(d){ return this.v(d) + this._get("w", d); };
