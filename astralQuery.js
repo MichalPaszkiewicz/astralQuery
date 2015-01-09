@@ -7,7 +7,10 @@ function astroError(message){
 
 var astro$ = function(){
 	this.CONSTANTS = {
-		AU: {value: 149597871, units: "km"},
+		AU: {value: 149597871, units: "km"}
+	};
+	
+	this.FUNCTIONS = {
 		TO_RADIANS: {value: function(deg){ return deg * Math.PI / 180; }, units: "rad"},
 		TO_DEGREES: {value: function(rad){return rad * 180 / Math.PI; }, units: "deg"}
 	};
