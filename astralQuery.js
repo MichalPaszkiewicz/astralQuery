@@ -25,7 +25,7 @@ var astro$ = function(){
 	
 	
 	//Day 0.0 ar 2000 Jan 0.0. Note hours must be in 24 hour system
-	this.toAstralDate(y, m, D, h, min, s){
+	this.toAstralDate = function(y, m, D, h, min, s){
 		var d = 367*y - 7 * Math.floor(( y + Math.floor((m+9)/12) ) / 4) + 275* Math.floor(m/9) + D - 730530;
 		var t = (h / 24.0) + (min / (60 * 24)) + (s / (60 * 60 * 24));
 		return d + t;
