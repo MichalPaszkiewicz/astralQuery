@@ -11,8 +11,8 @@ var astro$ = function(){
 	};
 	
 	this.FUNCTIONS = {
-		TO_RADIANS: {value: function(deg){ return deg * Math.PI / 180; }, units: "rad"},
-		TO_DEGREES: {value: function(rad){return rad * 180 / Math.PI; }, units: "deg"}
+		TO_RADIANS: function(deg){ return deg * Math.PI / 180; },
+		TO_DEGREES: function(rad){return rad * 180 / Math.PI; }
 	};
 	
 	/*todo: discuss moving this to body*/
@@ -58,6 +58,29 @@ var astro$ = function(){
 		newBody.q = function(d){ return this._get("a", d) * (1 - this._get("e", d)); };/*remember a is earth radii for moon*/
 		newBody.Q = function(d){ return this._get("a", d) * (1 + this._get("e", d)); };
 		newBody.P = function(d){ return Math.pow(this._get("a", d), 1.5); };
+		newBody.E = function(d){ 
+			var tempM = this._get("M", d); 
+			var tempe = this._get("e", d);
+			var eDeg = astro$.FUNCTIONS.TO_DEGREES(tempe);
+			var MRad = astro$.FUNCTIONS.TO_RADIANS(tempM);
+			var E0 = tempM + eDeg * Math.sin(MRad) * (1.0 + tempe * Math.cos(MRad));
+			var E1 = -1;
+			if(E0 < 0.06){ return E0; }
+			else{ 
+				var counter = 0;
+				while(Math.abs( E0 - E1 ) > 0.001){
+					E1 = E0 - (E0 - eDeg * Math.sin(E0) - M ) / ( 1 - tempe * Math.cos(E0) );
+					counter++;
+					if(counter == 10000){ throw new astroError("Formula not converging"); }
+				}	
+				return E1;
+			}
+		};
+		newBody.xv = function(d){ return this._get("a", d) * Math.cos(this.E(d)) - this._get("e", d); };
+		newBody.xy = function(d){ return this._get("a", d) * Math.sqrt(1.0 - Math.pow(this._get("e", d),2)) * Math.sin(this.E(d)); };
+		newBody.v = function(d){ return Math.atan2( this.yv(d), this.xv(d) ); };
+		newBody.r = function(d){ return Math.sqrt( Math.pow( this.xv(d), 2 ) + Math.pow( this.yv(d), 2 ) ) };
+		newBody.lonsun = function(d){ return this.v(d) + this._get("w", d); }
 		/*newBody.T = Epoch_of_M - (M(deg)/360_deg) / P  = time of perihelion*/
 		return newBody;
 	}
@@ -75,7 +98,9 @@ var astro$ = function(){
 	P	orbital period (years if a is in AU)
 	T	time of perihelion
 	v	true anomaly (angle between position and perihelion)
+	r	distance
 	E	eccentric anomaly
+	lonsun	true longitude (for sun)
 ****************************************************************************************/
 	
 	/*List of all types of heavenly objects*/
