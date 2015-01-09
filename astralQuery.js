@@ -76,7 +76,7 @@ var astro$ = function(){
 			else{ 
 				var counter = 0;
 				while(Math.abs( E0 - E1 ) > 0.001){
-					E0 = E1;
+					if(counter > 0){E0 = E1;}
 					E1 = E0 - (E0 - eDeg * Math.sin(E0) - tempM ) / ( 1 - tempe * Math.cos(E0) );
 					counter++;
 					if(counter == 10000){ throw new astroError("Formula not converging"); }
