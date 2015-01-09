@@ -8,6 +8,14 @@ var astro$ = function(){
 		AU: {value: 149597871, units: "km"}
 	};
 	
+	this.EARTH = {
+		ecl: function(d){ return 23.4393 - 3.563E-7 * d; }	
+	};
+/*******************************************************************************
+ * 	ecl	obliquity of the ecliptic
+ *******************************************************************************/
+	
+	
 	//Day 0.0 ar 2000 Jan 0.0. Note hours must be in 24 hour system
 	this.toAstralDate(y, m, D, h, min, s){
 		var d = 367*y - 7 * Math.floor(( y + Math.floor((m+9)/12) ) / 4) + 275* Math.floor(m/9) + D - 730530;
