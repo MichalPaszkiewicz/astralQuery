@@ -1,6 +1,10 @@
 # astralQuery
 An easy to add and use library for working with heavenly bodies. Get planet positions easily by using this as an ephemeris, add your own heavenly bodies, don''t worry about calculations!
 
+Important: naming conventions
+Names of type in lower case
+Names of objects capitalised
+
 #Examples
 a$("Moon")                                              
 returns: object (all info on moon)
@@ -32,8 +36,3 @@ returns: array[obj] (array of planet objects)
 a$("Sun").satellites().satellites()                    
 returns: array[obj] (array of all satellites of all planets)
 
-Important: naming conventions
-
-Names of type in lower case
-
-Names of objects capitalised
