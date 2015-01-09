@@ -1,3 +1,5 @@
+/* calculated using http://www.stjarnhimlen.se/comp/ppcomp.html */
+
 function astroError(message){
 	this.name = "astroError";
 	this.message = message;
