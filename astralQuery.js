@@ -4,6 +4,10 @@ function astroError(message){
 }
 
 var astro$ = function(){
+	this.CONSTANTS = {
+		AU: {value: 149597871, units: "km"}
+	};
+	
 	//Day 0.0 ar 2000 Jan 0.0. Note hours must be in 24 hour system
 	this.toAstralDate(y, m, D, h, min, s){
 		var d = 367*y - 7 * Math.floor(( y + Math.floor((m+9)/12) ) / 4) + 275* Math.floor(m/9) + D - 730530;
@@ -28,14 +32,36 @@ var astro$ = function(){
 		return this.toAstralDate(year, month, day, hour, minute, second);
 	}
 	
-	/*returns a body*/
-	this.body = function(){
-		this.weight;
+	/*returns heavenly body*/
+	this.body = function(N, i, w, a, e, M){
+		var newBody = function(){};
+		newBody.orbit = {N: N, i: i, w: w, a: a, e: e, M: M};
+		newBody.w1 = function(){ return this.N + this.w; };
+		newBody.L = function(){ return this.M + this.w1(); };
+		newBody.q = function(){ return this.a * (1 - this.e); };
+		newBody.Q = function(){ return this.a * (1 + this.e); };
+		newBody.P = function(){ return Math.pow(this.a, 1.5); };
+		/*newBody.T = Epoch_of_M - (M(deg)/360_deg) / P  = time of perihelion*/
+		return newBody;
 	}
+/****************************************************************************************
+	N	longitude of the ascending node
+	i	inclination to the ecliptic
+	w	argument of perihelion
+	a	semi-major axis, mean distance from Sun
+	e	eccentricity (0=circle, 0-1=ellipse, 1=parabola)
+	M	mean anomaly (0 at perihelion; increases uniformly with time)
+	w1	longitude of perihelion
+	L	mean longitude
+	q	perihelion distance
+	Q	aphelion distance
+	P	orbital period (years if a is in AU)
+	T	time of perihelion
+	v	true anomaly (angle between position and perihelion)
+	E	eccentric anomaly
+****************************************************************************************/
 	
-	this.types = []
-
-	var typesList = [
+	this.types = [
 		"natural",
 		"artificial",
 		"satellite", /*use 'natural' or 'artificial' with 'satellite'.*/
@@ -73,7 +99,7 @@ var astro$ = function(){
 	this.getValue = function(body, value){ return "value in body"; }	
 
 	return this;
-}
+};
 
 function a$(){
 	var defaults = {};
