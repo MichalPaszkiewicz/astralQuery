@@ -166,7 +166,7 @@ var astro$ = function(){
 				if(heavenlyBody == arg1){
 					return this.items[heavenlyBody];
 				}
-				if(this.items[heavenlyBody].types.contains(function(typeName){typeName == arg1})){
+				if(this.items[heavenlyBody].types.contains(function(typeName){return typeName == arg1;})){
 					results.push(this.items[heavenlyBody]);
 				}
 			}
