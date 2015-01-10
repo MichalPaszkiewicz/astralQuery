@@ -4,6 +4,25 @@ function astroError(message){
 	this.name = "astroError";
 	this.message = message;
 }
+Array.prototype.countWhere = function(xAndY){
+	var count = 0;
+	for(var i = 0; i < this.length; i++)
+	{
+		if(xAndY(this[i])){
+			count++;
+		}
+	}
+	return count;
+}
+
+Array.prototype.contains = function(xAndY){
+	for(var i = 0; i < this.length; i++){
+		if(xAndY(this[i])){
+			return true;
+		}
+	}
+	return false;
+}
 
 var astro$$$ = function(){
 	this.FUNCTIONS = {
@@ -135,6 +154,26 @@ var astro$ = function(){
 		"Mercury": {types: ["planet"], body: this.body([48.3313,3.24587E-5],[7.0047,5.00E-8],[29.1241,1.01444E-5],[0.387098,0],[0.205635,5.59E-10],[168.6562,4.0923344368])},
 		"Venus": {types: ["planet"], body: this.body([76.6799,2.46590E-5],[3.3946,2.75E-8],[54.8910,1.38374E-5],[0.723330,0],[0.006773,1.302E-9],[48.0052,1.6021302244])}
 	};
+	
+	
+	
+	//gets all items of type
+	this.getBodies = function(arg1){
+		var results = [];
+		
+		for(var heavenlyBody in this.items){
+			if (object.hasOwnProperty(property)) {
+				if(heavenlyBody == arg1){
+					return this.items[heavenlyBody];
+				}
+				if(this.items[heavenlyBody].types.contains(function(typeName){typeName == arg1})){
+					results.push(this.items[heavenlyBody]);
+				}
+			}
+		}
+		
+		return results;
+	}
 
 	/*gets or sets values*/
 	this.getOrSet = function(arg1, arg2){
@@ -150,7 +189,13 @@ var astro$ = function(){
 	return this;
 };
 
+var _$_$_;
+
 function a$(){
+	if(_$_$_ === null || _$_$_ === undefined){
+		_$_$_ = new astro$();
+	}
+	
 	var defaults = {};
 
 	var args = arguments;
@@ -161,10 +206,10 @@ function a$(){
 		case 0:	return "Help information: ";
 
 		/*One argument: clearly querying*/
-		case 1: return "ok";
+		case 1: return _$_$_.getBodies(args[0]);
 
 		/*Two arguments: setting or getting values or calling function*/
-		case 2: return astro$.getOrSet(args[0], args[1]);
+		case 2: return _$_$_.getOrSet(args[0], args[1]);
 		default: return "lol";		
 	}
 }
