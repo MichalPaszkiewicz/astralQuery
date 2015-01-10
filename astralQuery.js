@@ -162,7 +162,7 @@ var astro$ = function(){
 		var results = [];
 		
 		for(var heavenlyBody in this.items){
-			if (object.hasOwnProperty(property)) {
+			if (this.items.hasOwnProperty(heavenlyBody)) {
 				if(heavenlyBody == arg1){
 					return this.items[heavenlyBody];
 				}
