@@ -46,10 +46,10 @@
 		}
 		
 		var angle = 0.0005;
+		var pivot = {x: Math.random() * canvas.width, y: Math.random() * canvas.height};
 		
 		function moveStars(){
-			pivot = stars[0];
-			for(var i = 1; i < stars.length; i++){
+			for(var i = 0; i < stars.length; i++){
 				stars[i].x = (stars[i].x - pivot.x) * Math.cos(angle) - (stars[i].y - pivot.y) * Math.sin(angle) + pivot.x;
 				stars[i].y = (stars[i].x - pivot.x) * Math.sin(angle) + (stars[i].y - pivot.y) * Math.cos(angle) + pivot.y;
 			}
