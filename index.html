@@ -45,7 +45,7 @@
 			}
 		}
 		
-		var angle = 0.01;
+		var angle = 0.001;
 		
 		function moveStars(){
 			pivot = stars[0];
@@ -62,7 +62,7 @@
 			ctx.clearRect ( 0 , 0 , canvas.width, canvas.height );
 			moveStars();
 			drawStars();
-			setTimeout(runAnimation, 500);
+			setTimeout(runAnimation, 1000);
 		}
 	
 		//init
