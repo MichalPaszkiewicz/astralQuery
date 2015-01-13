@@ -40,13 +40,18 @@
 		}
 		
 		function drawStars(){
+			ctx.beginPath();
+			ctx.arc(pivot.x - 1.5 * canvas.width, pivot.y - 1.5 * canvas.height, 5, 0 , 2*Math.PI);
+			ctx.strokeStyle = "red";
+			ctx.stroke();
+			
 			for(var i = 0; i < stars.length; i++){
 				drawStar(stars[i]);
 			}
 		}
 		
 		var angle = 0.0005;
-		var pivot = {x: (1 + Math.random()) * canvas.width, y: (1 + Math.random()) * canvas.height};
+		var pivot = {x: (1.5 + Math.random()) * canvas.width, y: (1.5 + Math.random()) * canvas.height};
 		
 		function moveStars(){
 			for(var i = 0; i < stars.length; i++){
