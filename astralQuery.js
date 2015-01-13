@@ -155,6 +155,16 @@ var astro$ = function(){
 		"Venus": {name: "Venus", types: ["planet"], body: this.body([76.6799,2.46590E-5],[3.3946,2.75E-8],[54.8910,1.38374E-5],[0.723330,0],[0.006773,1.302E-9],[48.0052,1.6021302244])}
 	};
 	
+	//adds all the functions needed for an item
+	this.getFunctions = function(item){
+		
+		//todo: get position. Type could be xyz, polar and variance reference frames
+		item.position = function(geolocation, date, type){ return {}; };
+		
+		//todo get geolocation of person and current date if these empty, test if item is visible.
+		item.visible = function(geolocation, date){ return false; }
+	}
+	
 	//gets all items of type
 	this.getBodies = function(arg1){
 		var results = [];
@@ -162,13 +172,17 @@ var astro$ = function(){
 		for(var heavenlyBody in this.items){
 			if (this.items.hasOwnProperty(heavenlyBody)) {
 				if(heavenlyBody == arg1){
-					return this.items[heavenlyBody];
+					var result = this.items[heavenlyBody];
+					
+					return result;
 				}
 				if(this.items[heavenlyBody].types.contains(function(typeName){return typeName == arg1;})){
 					results.push(this.items[heavenlyBody]);
 				}
 			}
 		}
+		
+		
 		
 		return results;
 	}
