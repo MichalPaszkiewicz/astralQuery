@@ -52,18 +52,21 @@
 			for(var i = 1; i < stars.length; i++){
 				stars[i].x = (stars[i].x - pivot.x) * Math.cos(angle) - (stars[i].y - pivot.y) * Math.sin(angle);
 				stars[i].y = (stars[i].x - pivot.x) * Math.sin(angle) + (stars[i].y - pivot.y) * Math.cos(angle)
+			
+				console.log(stars[i].x + "," + stars[i].y);
 			}
+			
 		}
 		
 		function runAnimation(){
 			ctx.clearRect ( 0 , 0 , canvas.width, canvas.height );
 			moveStars();
 			drawStars();
-			setTimeout(runAnimation, 50);
+			setTimeout(runAnimation, 500);
 		}
 	
 		//init
-		for(var i = 0; i < 100; i++)
+		for(var i = 0; i < 2; i++)
 		{
 			var x = Math.random() * canvas.width;
 			var y = Math.random() * canvas.height;
