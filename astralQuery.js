@@ -173,7 +173,7 @@ var astro$ = function(){
 			if (this.items.hasOwnProperty(heavenlyBody)) {
 				if(heavenlyBody == arg1){
 					var result = this.items[heavenlyBody];
-					
+					this.getFunctions(result);
 					return result;
 				}
 				if(this.items[heavenlyBody].types.contains(function(typeName){return typeName == arg1;})){
@@ -182,7 +182,9 @@ var astro$ = function(){
 			}
 		}
 		
-		
+		for(var i = 0; i < results.length; i++){
+			this.getFunctions(results[i]);
+		}
 		
 		return results;
 	}
