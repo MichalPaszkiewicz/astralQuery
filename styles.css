@@ -10,7 +10,7 @@ body, a{
 	color: white;
 }
 
-h1{
+h1, h2{
 	width: 100%;
 	text-align: center;
 	position:relative;
