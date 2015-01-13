@@ -34,7 +34,7 @@
 		
 		function drawStar(star){
 			ctx.beginPath();
-			ctx.arc(star.x, star.y, 1, 0, 2 * Math.PI);
+			ctx.arc(star.x - 1.5 * canvas.width, star.y - 1.5 * canvas.height, 1, 0, 2 * Math.PI);
 			ctx.strokeStyle = star.colour;
 			ctx.stroke();
 		}
@@ -64,10 +64,10 @@
 		}
 	
 		//init
-		for(var i = 0; i < 100; i++)
+		for(var i = 0; i < 300; i++)
 		{
-			var x = Math.random() * canvas.width;
-			var y = Math.random() * canvas.height;
+			var x = Math.random() * 3 * canvas.width;
+			var y = Math.random() * 3 * canvas.height;
 			addStar(x, y);
 		}
 		
