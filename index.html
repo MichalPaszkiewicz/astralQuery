@@ -25,16 +25,51 @@
 		canvas.height = window.innerHeight;
 		
 		var ctx = canvas.getContext("2d");
-
-		for(var i = 0; i < 100; i++)
-		{
+		
+		var stars = [];
+		
+		function addStar(x, y){
+			stars.push({x: x,y: y, colour: "rgb(252, 252, 218)"});
+		}
+		
+		function drawStar(star){
 			ctx.beginPath();
-			var x = Math.random() * canvas.width;
-			var y = Math.random() * canvas.height;
-			ctx.arc(x, y, 1, 0, 2 * Math.PI);
-			ctx.strokeStyle = "rgb(252, 252, 218)";
+			ctx.arc(star.x, star.y, 1, 0, 2 * Math.PI);
+			ctx.strokeStyle = star.colour;
 			ctx.stroke();
 		}
+		
+		function drawStars(){
+			for(var i = 0; i < stars.length; i++){
+				drawStar(stars[i]);
+			}
+		}
+		
+		var angle = 0.01;
+		
+		function moveStars(){
+			pivot = stars[0] ?? {x: canvas.width/2, y: canvas.height/2}
+			for(var i = 1; i < stars.length; i++){
+				stars[i].x = (stars[i].x - pivot.x) * Math.cos(angle) - (stars[i].y - pivot.y) * Math.sin(angle);
+				stars[i].y = (stars[i].x - pivot.x) * Math.sin(angle) + (stars[i].y - pivot.y) * Math.cos(angle)
+			}
+		}
+		
+		function runAnimation(){
+			moveStars();
+			drawStars();
+			setTimeout(runAnimation, 50);
+		}
+	
+		//init
+		for(var i = 0; i < 100; i++)
+		{
+			var x = Math.random() * canvas.width;
+			var y = Math.random() * canvas.height;
+			addStar(x, y);
+		}
+		
+		runAnimation();
 	</script>
 </body>
 
