@@ -16,6 +16,25 @@
 </head>
 <body>
 	<h1>astralQuery js</h1>
+	
+	<canvas id="my-canvas"></canvas>
+	<script>
+		var canvas = document.getElementById("my-canvas");
+		canvas.style.width = window.innerWidth + "px";
+		canvas.style.height = window.innerHeight + "px";
+		
+		var ctx = canvas.getContext("2d");
+
+		for(var i = 0; i < 100; i++)
+		{
+			ctx.beginPath();
+			var x = Math.random() * canvas.width;
+			var y = Math.random() * canvas.height;
+			ctx.arc(x, y, 1, 0, 2 * Math.PI);
+			ctx.lineColor = "white";
+			ctx.stroke();
+		}
+	</script>
 </body>
 
 </html>
