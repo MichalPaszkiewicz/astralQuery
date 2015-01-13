@@ -48,7 +48,7 @@
 		var angle = 0.01;
 		
 		function moveStars(){
-			pivot = stars[0] ?? {x: canvas.width/2, y: canvas.height/2}
+			pivot = stars[0];
 			for(var i = 1; i < stars.length; i++){
 				stars[i].x = (stars[i].x - pivot.x) * Math.cos(angle) - (stars[i].y - pivot.y) * Math.sin(angle);
 				stars[i].y = (stars[i].x - pivot.x) * Math.sin(angle) + (stars[i].y - pivot.y) * Math.cos(angle)
