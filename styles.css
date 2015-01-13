@@ -13,12 +13,16 @@ body, a{
 h1{
 	width: 100%;
 	text-align: center;
+	position:relative;
+	z-index: 20;
 }
 
 canvas{
 	position: absolute;
 	left: 0;
 	top: 0;
+	opacity: 0.5;
+	z-index: 10;
 }
 
 .main-container{
