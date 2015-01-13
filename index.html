@@ -29,7 +29,7 @@
 		var stars = [];
 		
 		function addStar(x, y){
-			stars.push({x: x,y: y, colour: "rgb(" + (Math.random() * 20 + 230) + "," + (Math.random() * 20 + 230) + "," + (Math.random() * 20 + 230) + ")"});
+			stars.push({x: x,y: y, colour: "rgb(" + Math.floor(Math.random() * 20 + 230) + "," + Math.floor(Math.random() * 20 + 230) + "," + Math.floor(Math.random() * 20 + 230) + ")"});
 		}
 		
 		function drawStar(star){
