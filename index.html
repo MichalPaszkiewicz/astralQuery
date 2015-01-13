@@ -29,12 +29,12 @@
 		var stars = [];
 		
 		function addStar(x, y){
-			var choice = Math.floor(3 * Math.random());
+			var choice = Math.floor(4 * Math.random());
 			var r, g, b;
 			
 			var r = Math.floor(50 * Math.random()) + 150;
 			var g = Math.floor(50 * Math.random()) + 150;
-			var b = Math.floor(50 * Math.random()) + 120;
+			var b = Math.floor(50 * Math.random()) + 150;
 			
 			var ran = Math.floor(Math.random() * 50) + 200;
 			if(choice == 0){
@@ -42,6 +42,9 @@
 			}
 			else if(choice == 1){
 				g = ran;
+			}
+			else if(choice == 2){
+				r = g = ran;
 			}
 			else{
 				b = ran;
