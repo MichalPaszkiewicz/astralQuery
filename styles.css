@@ -26,6 +26,7 @@ canvas{
 }
 
 .main-container{
+	margin-top: 10px;
 	position:relative;
 }
 
