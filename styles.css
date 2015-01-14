@@ -33,7 +33,7 @@ canvas{
 @media(min-width: 1000px){
 	.main-container{
 		width: 1000px;
-		background: rgba(255,255,255,0.3);
+		background: rgba(255,255,255,0.2);
 		min-height: 90%;
 		margin:auto;
 	}
