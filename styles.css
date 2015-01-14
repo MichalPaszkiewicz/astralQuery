@@ -26,7 +26,6 @@ canvas{
 }
 
 .main-container{
-	margin-top: 10px;
 	position:relative;
 }
 
@@ -34,7 +33,7 @@ canvas{
 	.main-container{
 		width: 1000px;
 		background: rgba(255,255,255,0.3);
-		min-height: 90%;
+		min-height: 100%;
 		margin:auto;
 	}
 }
