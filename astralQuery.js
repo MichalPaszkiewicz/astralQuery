@@ -108,6 +108,17 @@ var astro$ = function(){
 		newBody.v = function(d){ return Math.atan2( this.yv(d), this.xv(d) ); };
 		newBody.r = function(d){ return Math.sqrt( Math.pow( this.xv(d), 2 ) + Math.pow( this.yv(d), 2 ) ); };
 		newBody.lonsun = function(d){ return this.v(d) + this._get("w", d); };
+		
+		newBody.xs = function(d){ return this.r(d) * Math.cos(this.lonsun(d));};
+		newBody.ys = function(d){ return this.r(d) * Math.sin(this.lonsun(d));};
+		
+		newBody.xe = function(d){return this.xs(d);};
+		newBody.ye = function(d){return this.ys(d) * Math.cos(astro$$$.EARTH.ecl(d)); };
+		newBody.ze = function(d){return this.ys(d) * Math.sin(astro$$$.EARTH.ecl(d)); };
+		
+		newBody.RA = function(d){return Math.atan2(this.ye(d), this.xe(d)); };
+		newBody.Dec = function(d){return Math.atan2(this.ze(d), Math.sqrt(this.xe(d) * this.xe(d) + this.ye(d) * this.ye(d)))};
+		
 		/*newBody.T = Epoch_of_M - (M(deg)/360_deg) / P  = time of perihelion*/
 		return newBody;
 	};
@@ -128,6 +139,10 @@ var astro$ = function(){
 	r	distance
 	E	eccentric anomaly
 	lonsun	true longitude (for sun)
+	xs..	ecliptic rectangular geocentric coordinates
+	xe..	equatorial, rectangular, geocentric coordinates
+	RA	right ascension
+	Dec	declination
 ****************************************************************************************/
 	
 	/*List of all types of heavenly objects*/
