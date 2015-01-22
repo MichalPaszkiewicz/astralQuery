@@ -1,4 +1,4 @@
-/* calculated using http://www.stjarnhimlen.se/comp/ppcomp.html */
+/* calculated using http://www.stjarnhimlen.se/comp/ppcomp.html (got to 5b)*/
 
 function astroError(message){
 	this.name = "astroError";
